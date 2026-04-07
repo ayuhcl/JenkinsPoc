@@ -1,4 +1,2 @@
-FROM python:3.9-slim
-WORKDIR /app
-COPY app.py .
-CMD ["python", "app.py"]
+FROM nginx:latest
+COPY index.html /user/share/nginx/html/index.html
