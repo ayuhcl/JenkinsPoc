@@ -1,0 +1,13 @@
+- hosts: web
+  become: true
+  tasks:
+    - name: Stop existing container (if any)
+      shell: docker rm -f webapp || true
+
+    - name: Run Docker container
+      docker_container:
+        name: webapp
+        image: cicd-poc:latest
+        state: started
+        ports:
+          - "80:80"
