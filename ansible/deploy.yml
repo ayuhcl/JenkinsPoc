@@ -7,7 +7,7 @@
     - name: Run Docker container
       docker_container:
         name: webapp
-        image: cicd-poc:latest
+        image: jenkins-poc:latest
         state: started
         ports:
           - "80:80"
