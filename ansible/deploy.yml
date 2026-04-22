@@ -21,7 +21,8 @@
       docker_image:
         name: my-app
         build:
-          path: .
+          path: ..
+          dockerfile: Dockerfile
         source: build
 
     - name: Run container
