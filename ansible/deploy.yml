@@ -1,24 +1,31 @@
 - name: Deploy Docker Container
   hosts: localhost
   become: true
-  tasks:
 
+  tasks:
     - name: Remove old container
       docker_container:
         name: my-app
         state: absent
 
-    - name: Build image
+    - name: Remove old image (optional but recommended)
+      docker_image:
+        name: my-app
+        state: absent
+        force_absent: true
+
+    - name: Build Docker image
       docker_image:
         name: my-app
         build:
           path: .
+        source: build
 
     - name: Run container
       docker_container:
         name: my-app
         image: my-app
         state: started
+        restart_policy: always
         ports:
           - "80:80"
- 
