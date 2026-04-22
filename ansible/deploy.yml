@@ -1,18 +1,21 @@
 - name: Deploy Docker Container
   hosts: localhost
   become: true
+  gather_facts: false
 
   tasks:
-    - name: Remove old container
+    - name: Remove old container if exists
       docker_container:
         name: my-app
         state: absent
+      ignore_errors: true
 
-    - name: Remove old image (optional but recommended)
+    - name: Remove old image if exists
       docker_image:
         name: my-app
         state: absent
         force_absent: true
+      ignore_errors: true
 
     - name: Build Docker image
       docker_image:
