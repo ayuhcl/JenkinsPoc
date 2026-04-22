@@ -1,40 +1,24 @@
 - name: Deploy Docker Container
-
   hosts: localhost
-
   become: true
-
   tasks:
 
     - name: Remove old container
-
       docker_container:
-
         name: my-app
-
         state: absent
 
     - name: Build image
-
       docker_image:
-
         name: my-app
-
         build:
-
           path: .
 
     - name: Run container
-
       docker_container:
-
         name: my-app
-
         image: my-app
-
         state: started
-
         ports:
-
           - "80:80"
  
